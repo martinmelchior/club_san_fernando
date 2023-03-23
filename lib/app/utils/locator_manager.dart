@@ -1,5 +1,4 @@
 
-import 'package:clubsanfernando/app/data/models/preferencias_de_usuario_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -53,17 +52,17 @@ Future<String> getAddressFromLatLng(double latitude, double longitude) async {
       if (place.locality!.isNotEmpty)
       {
         lugar += place.locality!;
-        PreferenciasDeUsuarioStorage.localidad = place.locality!;
+        //PreferenciasDeUsuarioStorage.localidad = place.locality!;
       }
       if (place.postalCode!.isNotEmpty)
       {
         lugar += ', ' + place.postalCode!;
-        PreferenciasDeUsuarioStorage.cp = place.postalCode!;
+        //PreferenciasDeUsuarioStorage.cp = place.postalCode!;
       }
       if (place.country!.isNotEmpty)
       {
         lugar += ', ' + place.country!;
-        PreferenciasDeUsuarioStorage.pais = place.country!;
+        //PreferenciasDeUsuarioStorage.pais = place.country!;
       }
     }
     return lugar;

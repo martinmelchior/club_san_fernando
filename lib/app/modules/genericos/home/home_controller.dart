@@ -3,7 +3,6 @@
 import 'package:get/get.dart';
 import 'package:clubsanfernando/app/data/models/preferencias_de_usuario_model.dart';
 import 'package:clubsanfernando/app/modules/genericos/controllers/aplicacion_settings/application_settings_controller.dart';
-import 'package:clubsanfernando/app/routes/routes_app.dart';
 import 'package:clubsanfernando/app/utils/manager_api_exceptions.dart';
 
 class HomeController extends GetxController {
@@ -21,12 +20,6 @@ class HomeController extends GetxController {
 
     try {
       await loadData();
-
-      if (PreferenciasDeUsuarioStorage.aceptoTYC == false)
-      {
-        // * ADD v2.0 (server) - Debe aceptar los nuevos terminos y condiciones
-        Get.toNamed(AppRoutes.rAceptarTyC);
-      }
 
     } catch (e) {
 

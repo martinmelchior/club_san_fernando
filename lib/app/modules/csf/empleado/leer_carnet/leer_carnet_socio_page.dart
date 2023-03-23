@@ -1,69 +1,44 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:clubsanfernando/app/modules/csf/empleado/lectura_sin_control/lectura_sin_control_controller.dart';
+import 'package:clubsanfernando/app/data/models/preferencias_de_usuario_model.dart';
 import 'package:clubsanfernando/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'leer_carnet_socio_controller.dart';
 
-class LecturaSinControlPage extends GetView<LecturaSinControlController> {
-  LecturaSinControlPage({Key? key}) : super(key: key);
+class LeerCarnetSocioPage extends GetView<LeerCarnetSocioController> {
+  
+  LeerCarnetSocioPage({Key? key}) : super(key: key);
 
   final CountDownController _controller = CountDownController();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackHomeEmpleado,
       appBar: AppBar(
-        title: const Text('Lectura de Carnet'),
+        centerTitle: true,
+        title: const Text('Validar Socio'),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                margin: const EdgeInsets.all(4),
-                width: double.infinity,
-                height: Get.height * 0.40,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      color: const Color.fromARGB(255, 65, 65, 65), width: 2),
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  color: const Color(0xFF242428),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 1,
-                      blurRadius: 20,
-                      offset: const Offset(5, 5), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Obx(() => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(controller.lectura.value,
-                          style: const TextStyle(color: Colors.white60)),
-                    )),
-              ),
-            ),
+      body: Container(
+          padding: const EdgeInsets.all(20.0),
+          height: double.infinity,
+          width: double.infinity,
+          child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  
+                  SizedBox(height: Get.height * 0.12),
+                  const Text("INICIA la LECTURA !\n\nLuego acerca el Carnet\ndel Socio por detrás\nde tu teléfono !", style: TextStyle(color: Color(0xFF38926E), fontSize: 22), textAlign: TextAlign.center),
+                  SizedBox(height: Get.height * 0.08),
 
-            Obx(() => Visibility(
-              visible: controller.id.value.isNotEmpty,
-              child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-                    child: Text(controller.id.toString(), style: const TextStyle(color: Colors.orange, fontSize: 40))),
-            ),
-            ),
-
-            Obx(() => Visibility(
-                  visible: !controller.leyendo.value,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                  //!--------------------------- boton Inicia lectura
+                  Obx(() => Visibility(
+                    visible: !controller.leyendo.value && PreferenciasDeUsuarioStorage.puntoDeControlId > 0,
                     child: SizedBox(
-                      width: Get.width * 0.85,
-                      child: FloatingActionButton.extended(
+                        width: Get.width * 0.85,
+                        child: FloatingActionButton.extended(
                           heroTag: null,
                           label: const Text('INICIAR  LECTURA',
                               style: TextStyle(
@@ -71,24 +46,28 @@ class LecturaSinControlPage extends GetView<LecturaSinControlController> {
                           shape: kShapeButtons,
                           backgroundColor: Colors.white.withOpacity(0.10),
                           tooltip: 'Iniciar lectura',
-                          onPressed: controller.readNFC),
+                          onPressed: controller.readNFC
+                        ),
+                      ),
                     ),
                   ),
-                )),
+                  
+                  //!--------------------------- Circular Count
+                  Obx(() => Visibility(
+                    visible: controller.leyendo.value,
+                    child: CircularCount(
+                        duration: controller.segundosDeTomaDeLectura,
+                        controller: _controller),
+                  )),
 
-            //!--------------------------- Circular Count
-            Obx(() => Visibility(
-                  visible: controller.leyendo.value,
-                  child: CircularCount(
-                      duration: controller.segundosDeTomaDeLectura,
-                      controller: _controller),
-                )),
-          ],
+                ],
+              ),
+            ),
         ),
-      ),
     );
   }
 }
+
 
 class CircularCount extends StatelessWidget {
   CircularCount({
@@ -102,13 +81,11 @@ class CircularCount extends StatelessWidget {
   final int _duration;
   final CountDownController _controller;
 
-  final LecturaSinControlController _controllerLectura = Get.find<LecturaSinControlController>();
+  final LeerCarnetSocioController _controllerLectura = Get.find<LeerCarnetSocioController>();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: CircularCountDownTimer(
+    return CircularCountDownTimer(
         duration: _duration, // Countdown duration in Seconds.
         initialDuration: 0, // Countdown initial elapsed Duration in Seconds.
         controller:
@@ -146,7 +123,6 @@ class CircularCount extends StatelessWidget {
           _controllerLectura.leyendo.value = false;
           //_controller.restart();
         },
-      ),
     );
   }
 }

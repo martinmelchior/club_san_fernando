@@ -156,7 +156,6 @@ class LoginPage extends GetView<LoginController> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: _key,
       child: Scaffold(
-        //backgroundColor: Colors.white,
         body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: GestureDetector(
@@ -174,6 +173,7 @@ class LoginPage extends GetView<LoginController> {
                       physics: const AlwaysScrollableScrollPhysics(),
                       child: Column(
                         children: <Widget>[
+                          //*------------------- LOGO
                           Container(
                             height: Get.height * 0.45,
                             width: Get.width * 0.52,
@@ -183,7 +183,7 @@ class LoginPage extends GetView<LoginController> {
                               image: AssetImage(Constants.kLogoEmpresa),
                             )),
                           ),
-                          
+                          //*------------------- CAMPOS
                           Container(
                             width: double.infinity,
                             height: Get.height * 0.6,

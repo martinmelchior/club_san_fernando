@@ -2,29 +2,6 @@ import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 
 class PreferenciasUsuario {
-  PreferenciasUsuario({
-    this.apellido,
-    this.nombre,
-    this.email,
-    this.cambiarPassword,
-    this.rol,
-    this.tokenDeAcceso,
-    this.tokenDeRefresco,
-    this.tokenMobile,
-    this.abrirNotificaciones,
-    this.showServicioCtaCte,
-    this.showServicioCtaCteGranaria,
-    this.showServicioEA,
-    this.lastError,
-    this.latitud,
-    this.longitud,
-    this.localidad,
-    this.cp,
-    this.pais,
-    this.isFirstTime,
-    this.aceptoTYC = false,
-    this.esIngenieroExternoTracking = false,
-  });
 
   String? apellido;
   String? nombre;
@@ -35,21 +12,33 @@ class PreferenciasUsuario {
   String? tokenMobile;
   bool? abrirNotificaciones;
   bool? cambiarPassword;
-  bool? showServicioCtaCte;
-  bool? showServicioCtaCteGranaria;
-  bool? showServicioEA;
   String? lastError;
   double? latitud;
   double? longitud;
-  String? localidad;
-  String? cp;
-  String? pais;
   bool? isFirstTime;
-  bool aceptoTYC;
-  bool esIngenieroExternoTracking;
+  String? puntoDeControl;
+  int? puntoDeControlId;
 
-  factory PreferenciasUsuario.fromRawJson(String str) =>
-      PreferenciasUsuario.fromJson(json.decode(str));
+  PreferenciasUsuario({
+    this.apellido,
+    this.nombre,
+    this.email,
+    this.cambiarPassword,
+    this.rol,
+    this.tokenDeAcceso,
+    this.tokenDeRefresco,
+    this.tokenMobile,
+    this.abrirNotificaciones,
+    this.lastError,
+    this.latitud,
+    this.longitud,
+    this.isFirstTime,
+    this.puntoDeControl,
+    this.puntoDeControlId,
+  });
+
+
+  factory PreferenciasUsuario.fromRawJson(String str) => PreferenciasUsuario.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
@@ -64,18 +53,12 @@ class PreferenciasUsuario {
         tokenMobile:                  json["tokenMobile"] ?? '',
         abrirNotificaciones:          json["abrirNotificaciones"] ?? false,
         cambiarPassword:              json["cambiarPassword"] ?? false,
-        showServicioCtaCte:           json["showServicioCtaCte"] ?? false,
-        showServicioCtaCteGranaria:   json["showServicioCtaCteGranaria"] ?? false,
-        showServicioEA:               json["showServicioEA"] ?? false,
         lastError:                    json["lastError"] ?? '',
         latitud:                      json["latitud"] ?? 0,
         longitud:                     json["longitud"] ?? 0,
-        localidad:                    json["localidad"] ?? '',
-        cp:                           json["cp"] ?? '',
-        pais:                         json["pais"] ?? '',
         isFirstTime:                  json["isFirstTime"] ?? true,
-        aceptoTYC:                    json["aceptoTYC"] ?? false,
-        esIngenieroExternoTracking:   json["esIngenieroExternoTracking"] ?? true,
+        puntoDeControl:               json["puntoDeControl"] ?? '',
+        puntoDeControlId:             json["puntoDeControlId"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -88,18 +71,12 @@ class PreferenciasUsuario {
         "tokenMobile":                tokenMobile ?? '',
         "abrirNotificaciones":        abrirNotificaciones ?? false,
         "cambiarPassword":            cambiarPassword ?? false,
-        "showServicioCtaCte":         showServicioCtaCte ?? false,
-        "showServicioCtaCteGranaria": showServicioCtaCteGranaria ?? false,
-        "showServicioEA":             showServicioEA ?? false,
         "lastError":                  lastError ?? '',
         "latitud":                    latitud ?? 0,
         "longitud":                   longitud ?? 0,
-        "localidad":                  localidad ?? '',
-        "cp":                         cp ?? '',
-        "pais":                       pais ?? '',
         "isFirstTime":                isFirstTime ?? true,
-        "aceptoTYC":                  aceptoTYC,
-        "esIngenieroExternoTracking": esIngenieroExternoTracking,
+        "puntoDeControl":             puntoDeControl ?? '',
+        "puntoDeControlId":           puntoDeControlId ?? 0,
       };
 }
 
@@ -155,30 +132,18 @@ class PreferenciasDeUsuarioStorage {
   static double get longitud => _box.read<double>('longitud') ?? 0;
   static set longitud(double value) => _box.write('longitud', value);
 
-  //-- GET Y SET del localidad
-  static String get localidad => _box.read<String>('localidad') ?? '';
-  static set localidad(String value) => _box.write('localidad', value);
-
-  //-- GET Y SET del cp
-  static String get cp => _box.read<String>('cp') ?? '';
-  static set cp(String value) => _box.write('cp', value);
-
-  //-- GET Y SET del pais
-  static String get pais => _box.read<String>('pais') ?? '';
-  static set pais(String value) => _box.write('pais', value);
-  
   //-- GET Y SET del isFirstTime
   static bool get isFirstTime => _box.read<bool>('isFirstTime') ?? true;
   static set isFirstTime(bool value) => _box.write('isFirstTime', value);
   
-  //-- GET Y SET del aceptoTYC
-  static bool get aceptoTYC => _box.read<bool>('aceptoTYC') ?? false;
-  static set aceptoTYC(bool value) => _box.write('aceptoTYC', value);
+  //-- GET Y SET del puntoDeControlId
+  static int get puntoDeControlId => _box.read<int>('puntoDeControlId') ?? 0;
+  static set puntoDeControlId(int value) => _box.write('puntoDeControlId', value);
 
-  //-- GET Y SET del esIngenieroExternoTracking
-  static bool get esIngenieroExternoTracking => _box.read<bool>('esIngenieroExternoTracking') ?? true;
-  static set esIngenieroExternoTracking(bool value) => _box.write('esIngenieroExternoTracking', value);
-  
+  //-- GET Y SET del lastError
+  static String get puntoDeControl => _box.read<String>('puntoDeControl') ?? '';
+  static set puntoDeControl(String value) => _box.write('puntoDeControl', value);
+
   static PreferenciasUsuario getData() {
     return PreferenciasUsuario(
       apellido: apellido,
@@ -196,9 +161,6 @@ class PreferenciasDeUsuarioStorage {
       lastError: lastError,
       latitud: latitud,
       longitud: longitud,
-      localidad: localidad,
-      cp: cp,
-      pais: pais,
     );
   }
 

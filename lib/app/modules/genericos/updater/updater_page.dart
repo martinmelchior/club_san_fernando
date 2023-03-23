@@ -12,16 +12,30 @@ class UpdaterPage extends StatelessWidget {
 
   UpdaterPage({Key? key}) : super(key: key);
   
+  Future<bool> _onWillPopScope() async {
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      body: Stack(
-          children: <Widget>[
-            kTBackgroundContainer,
-            const MyProgressIndicactor(mensaje: 'Buscando actualizaciones ...',),
-          ]
-      )
+    return WillPopScope(
+      onWillPop: _onWillPopScope,
+      child: Scaffold(
+        key: _scaffoldKey,
+        extendBodyBehindAppBar: true,
+        backgroundColor: kBackHomeEmpleado,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: Stack(
+            children: <Widget>[
+              kWidgetBackgroundImage1,
+              const MyProgressIndicactor(mensaje: 'Buscando actualizaciones ...',),
+            ]
+        )
+      ),
     );
   }
 }

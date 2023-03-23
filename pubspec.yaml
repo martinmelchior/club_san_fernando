@@ -46,15 +46,17 @@ dependencies:
   geocoding: ^2.1.0
   geolocator: ^9.0.2
   flutter_nfc_kit: ^3.3.1
+  circular_countdown_timer: ^0.2.0
+  cached_network_image: ^3.0.0
 
 flutter_native_splash:
-  image: assets/logo_960.png
-  background_image: assets/bg2.png
+  image: 'assets/logo_960.png'
+  background_image: 'assets/bg2.png'
   #color: "#FFFFFF"
   android_12:
-    image: assets/logo_1152.png
-    background_image: assets/bg2.png
-    #color: "#FFFFFF"
+    image: 'assets/logo_960.png'
+    background_image: 'assets/bg2.png'
+    color: "#000000"
 
 flutter_icons:
   android: true

@@ -68,10 +68,6 @@ class ApplicationSettingsController extends GetxController {
       appShowCotizacionesCereales.value = response.showCotizacionesCereales ?? false;
       //-- ADD 3.1
       appShowSeguimientoDeLabores.value = response.showSeguimientoDeLabores ?? false;
-      PreferenciasDeUsuarioStorage.esIngenieroExternoTracking = esIngenieroExternoTracking.value =  response.esIngenieroExternoTracking ?? true;
-
-      // * ADD v2.0 (server) - la trato distinto
-      PreferenciasDeUsuarioStorage.aceptoTYC = response.aceptoTYC;
 
       Get.back();
      

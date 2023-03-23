@@ -1,9 +1,15 @@
+import 'package:clubsanfernando/app/modules/csf/empleado/carnet/carnet_binding.dart';
+import 'package:clubsanfernando/app/modules/csf/empleado/carnet/carnet_page.dart';
 import 'package:clubsanfernando/app/modules/csf/empleado/home/empleado_home_binding.dart';
 import 'package:clubsanfernando/app/modules/csf/empleado/home/empleado_home_page.dart';
 import 'package:clubsanfernando/app/modules/csf/empleado/lectura_sin_control/lectura_sin_control_binding.dart';
 import 'package:clubsanfernando/app/modules/csf/empleado/lectura_sin_control/lectura_sin_control_page.dart';
-import 'package:clubsanfernando/app/modules/csf/empleado/validar_socio/validar_socio_binding.dart';
-import 'package:clubsanfernando/app/modules/csf/empleado/validar_socio/validar_socio_page.dart';
+import 'package:clubsanfernando/app/modules/csf/empleado/leer_carnet/leer_carnet_socio_binding.dart';
+import 'package:clubsanfernando/app/modules/csf/empleado/leer_carnet/leer_carnet_socio_page.dart';
+import 'package:clubsanfernando/app/modules/csf/empleado/punto_de_control/punto_de_control_binding.dart';
+import 'package:clubsanfernando/app/modules/csf/empleado/punto_de_control/punto_de_control_page.dart';
+import 'package:clubsanfernando/app/modules/csf/empleado/tracking/tracking_binding.dart';
+import 'package:clubsanfernando/app/modules/csf/empleado/tracking/tracking_page.dart';
 import 'package:clubsanfernando/app/modules/genericos/close_session/close_session_binding.dart';
 import 'package:clubsanfernando/app/modules/genericos/close_session/close_session_page.dart';
 import 'package:clubsanfernando/app/modules/genericos/enviar123456/enviar123456_binding.dart';
@@ -41,9 +47,12 @@ class AppPages {
     GetPage(name: AppRoutes.rEnviar123456,             page: () => Enviar123456Page(),         binding: Enviar123456Binding()),
 
     //* Club San Fernando
-    GetPage(name: AppRoutes.rCSFEmpleadoHome,          page: () => const EmpleadoHomePage(),   binding: EmpleadoHomeBinding()),
-    GetPage(name: AppRoutes.rCSFLecturaSinControl,     page: () => const LecturaSinControlPage(), binding: LecturaSinControlBinding()),
-    GetPage(name: AppRoutes.rCSFValidarSocio,          page: () => const ValidarSocioPage(), binding: ValidarSocioBinding()),
+    GetPage(name: AppRoutes.rCSFEmpleadoHome,               page: () => const EmpleadoHomePage(),   binding: EmpleadoHomeBinding()),
+    GetPage(name: AppRoutes.rCSFLecturaSinControl,          page: () => LecturaSinControlPage(),    binding: LecturaSinControlBinding()),
+    GetPage(name: AppRoutes.rCSFValidarSocio,               page: () => LeerCarnetSocioPage(),      binding: LeerCarnetSocioBinding()),
+    GetPage(name: AppRoutes.rCSFShowCarnetById,             page: () => const CarnetPage(),         binding: CarnetBinding()),
+    GetPage(name: AppRoutes.rCSFSeleccionarPuntoDeControl,  page: () => PuntoDeControlPage(),       binding: PuntoDeControlBinding()),
+    GetPage(name: AppRoutes.rCSFTrackingList,               page: () => TrackingPage(),             binding: TrackingBinding()),
   
   ];
 }

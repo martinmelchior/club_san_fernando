@@ -31,11 +31,11 @@ class Constants {
   /* -ACA-          MODIFICAR CUANDO PASE DE TESTING A PRODUCCION                   */
   /* -------------------------------------------------------------------------------*/
   static bool isTesting = false;
-  static String urlBase = "http://peperina.ddns.net";                    //?--- Produccion
+  static String urlBase = "http://peperina.ddns.net/Generico/";                    //?--- Produccion
   static String urlBaseVersion = '${urlBase}api/v1';
 
   //* Si encontramos esta constante en urlBase se muestra un BANNER TESTING
-  static String kUrlContaintTesting = 'conveyor';
+  static String kUrlContaintTesting = 'peperina';
 
   static String andoridId = "ar.com.gmzagro";
   static String urlSite = "https://gmzagro.com.ar";
@@ -55,8 +55,16 @@ class Constants {
   static String kImgTRK = 'assets/img/TRK.png';
   static String kImgNfc1 = 'assets/img/nfc1.png';
   static String kImgNfc2 = 'assets/img/nfc2.png';
-  static String kImgCarnet = 'assets/img/carnet.png';
+  static String kImgCarnet = 'assets/img/carnet1.png';
   static String kImgCarnet2 = 'assets/img/carnet2.png';
+  static String kImgSocio = 'assets/img/socio1.png';
+  static String kImgSocio2 = 'assets/img/socio2.png';
+  static String kImgPc1     = 'assets/img/pc1.png';
+  static String kImgPc2     = 'assets/img/pc2.png';
+  static String kImgNoFoto  = 'assets/img/no-foto.png';
+  static String kImgActivo  = 'assets/img/inactivo.png';
+  static String kImgInactivo  = 'assets/img/activo.png';
+  static String kImgTracking  = 'assets/img/map.png';
 
   static String kEmailSoporte = 'martin.melchior@gmail.com';
 

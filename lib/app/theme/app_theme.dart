@@ -4,13 +4,25 @@ import 'package:get/get.dart';
 
 const kFontFamily = 'OpenSans';
 const kImgBG1     = 'assets/bg2.png';
+const kImgBG3     = 'assets/bg3.jpg';
 const kImglogo960 = 'assets/logo_960.png';
-//const kBackHomeEmpleado= Color.fromARGB(255, 44, 44, 44);
 const kBackHomeEmpleado= Color(0xFF141417);
 
 Widget watermark = const Image(image: AssetImage(kImglogo960), 
                                   height: 400, 
                                   width: 400, color: Color.fromRGBO(255, 255, 255, 0.05), colorBlendMode: BlendMode.modulate);
+
+Widget kWidgetBackgroundImage1 = Container(
+                    height: Get.height,
+                    width: Get.width,
+                    decoration:const BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(kImgBG3),
+                        )
+                    ),
+                  );
+
 
 Widget kWidgetBackgroundImage0 = Container(
                     height: Get.height,
@@ -55,7 +67,7 @@ const kTIconColorTextBoxLogin = Color(0xFFE2DFDF);
 const kTLoginTextFieldErrorStyle = TextStyle(color: Color(0xFF258057), fontWeight: FontWeight.bold);
 const kTLabelTextBoxLogin = Color(0xFF606060);
 
-const kTAllLabelsColor = Color(0xFF6E6E6E);
+const kTAllLabelsColor = Color.fromARGB(255, 182, 173, 173);
 const kTClientesLabelsColor = Color(0xFF6E6E6E);
 
 const kTIconColor = Color(0xFF6E6E6E);
@@ -108,7 +120,7 @@ const kErrorTextColor = Color(0xFFFFFFFF);
 const kDialogErrorBackColor = Color(0xFFCF5863);
 const kDialogErrorTextColor = Color(0xFFFFFFFF);
 
-const kTRedColor = Color(0xFFDA3633);
+const kTRedColor = Color.fromARGB(255, 211, 77, 75);
 
 //*-- Logo
 //-------------------------------------------------------------------

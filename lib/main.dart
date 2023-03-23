@@ -1,3 +1,4 @@
+import 'package:clubsanfernando/app/data/models/preferencias_de_usuario_model.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:clubsanfernando/app/routes/pages_app.dart';
@@ -17,7 +18,7 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   //*--  Creamos preferencia del usuario vacias si no existen
-  //await PreferenciasDeUsuarioStorage.inicializar(PreferenciasUsuario().toJson());
+  await PreferenciasDeUsuarioStorage.inicializar(PreferenciasUsuario().toJson());
 
   //*-- Despues de WidgetsFlutterBinding
   //*-- Llamar siempre despues de inicializar las preferencias del usuario para guardar token en mobile
@@ -25,6 +26,10 @@ void main() async {
 
   //*-- Piso token en propiedades del usuario del mobile
   //PreferenciasDeUsuarioStorage.tokenMobile = MyPushNotificationService.token ?? '';
+
+  //*-- Piso punto de acceso en cada inicio
+  PreferenciasDeUsuarioStorage.puntoDeControlId = 0;
+  PreferenciasDeUsuarioStorage.puntoDeControl = '';
 
   //*-- Inyectamos dependencias
   DependencyInjection.initServices();

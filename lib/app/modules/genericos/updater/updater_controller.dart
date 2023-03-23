@@ -20,6 +20,8 @@ class UpdaterController extends GetxController {
     
     FlutterNativeSplash.remove();
     
+    //await Future.delayed(const Duration(seconds: 2));
+
     //-- ADD 2.2
     // if (!Constants.urlBase.contains(Constants.kUrlContaintTesting))
     // {

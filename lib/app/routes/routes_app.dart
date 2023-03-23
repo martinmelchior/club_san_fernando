@@ -19,9 +19,12 @@ abstract class AppRoutes {
   static const rNotificaciones           = "/rNotificaciones";
 
   //* Club San Fernando
-  static const rCSFEmpleadoHome          = "/rCSFEmpleadoHome";
-  static const rCSFLecturaSinControl     = "/rCSFLecturaSinControl";
-  static const rCSFValidarSocio          = "/rCSFValidarSocio";
+  static const rCSFEmpleadoHome               = "/rCSFEmpleadoHome";
+  static const rCSFLecturaSinControl          = "/rCSFLecturaSinControl";
+  static const rCSFValidarSocio               = "/rCSFValidarSocio";
+  static const rCSFShowCarnetById             = "/rCSFShowCarnetById";
+  static const rCSFSeleccionarPuntoDeControl  = "/rCSFSeleccionarPuntoDeControl";
+  static const rCSFTrackingList               = "/rCSFTrackingList";
 }
 
 

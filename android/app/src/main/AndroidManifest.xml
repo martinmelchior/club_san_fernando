@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.clubsanfernando">
 
-    <uses-permission android:name="android.permission.NFC" />
+   <uses-permission android:name="android.permission.NFC" />
+   <uses-permission android:name="android.permission.INTERNET" /> 
 
    <application
         android:label="Club San Fernando"

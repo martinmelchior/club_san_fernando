@@ -1,26 +1,44 @@
-
-
 import 'dart:convert';
-
+import 'package:clubsanfernando/app/data/models/preferencias_de_usuario_model.dart';
 import 'package:clubsanfernando/app/modules/csf/model/model.dart';
+import 'package:clubsanfernando/app/routes/routes_app.dart';
 import 'package:clubsanfernando/app/theme/app_theme.dart';
-import 'package:clubsanfernando/app/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:get/get.dart';
 
-class LecturaSinControlController extends GetxController {
+class LeerCarnetSocioController extends GetxController {
 
-  LecturaSinControlController();
+  LeerCarnetSocioController();
 
   LecturaNFC lecturaNFC = LecturaNFC();
   Rx<String> lectura = ''.obs; 
   Rx<String> id = ''.obs; 
   Rx<bool> leyendo = false.obs; 
   Rx<int> segundosDeDiferencia = 0.obs;
-  int segundosDeTomaDeLectura = 10;
-
+  int segundosDeTomaDeLectura = 5;
   
+  @override
+  void onReady() async {
+
+    if (PreferenciasDeUsuarioStorage.puntoDeControlId == 0)
+    {
+      Get.showSnackbar(const GetSnackBar(
+                      backgroundColor: kErrorBackColor,
+                      snackPosition: SnackPosition.BOTTOM,
+                      title: 'ATENCION',
+                      isDismissible: true,
+                      message: "Debes seleccionar un PUNTO de CONTROL !",
+                      duration: Duration(seconds: 3)));
+
+      Get.back();
+      //Get.offNamed(AppRoutes.rCSFSeleccionarPuntoDeControl);
+    }
+    super.onReady();
+  }
+
+
   //*----------------------------------------------------------- LECTURA COMPLETA
   void readNFC() async {
     
@@ -68,6 +86,18 @@ class LecturaSinControlController extends GetxController {
         }
       }
 
+      //*---------------------------------------------------------
+      //*-- VALIDAMOS CARNET DE SOCIO
+      //*---------------------------------------------------------
+      if (id.value.isNotEmpty)
+      {
+        Get.toNamed(AppRoutes.rCSFShowCarnetById, arguments: { 'uid': id.value });
+      }
+
+    }
+    on PlatformException catch (e)
+    {
+      debugPrint(e.toString());
     }
     catch (e) {
       

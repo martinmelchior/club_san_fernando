@@ -134,6 +134,26 @@ class MyDialog {
         });
   }
 
+  static Future<void> myShowDialogDisabledBackError({ String mensaje = 'Oooops parece que ocurrió un error :('}) 
+  {
+    //?----------------------------------------------------------------------------------------
+    //?--- Evitamos el back !!
+    //?----------------------------------------------------------------------------------------
+    return showDialog(
+        barrierDismissible: false,
+        context: Get.context!,
+        builder: (BuildContext context) {
+          return WillPopScope(
+              onWillPop: () => Future.value(false),
+              child: AlertDialog(
+                backgroundColor: kTRedColor,
+                title: Center(
+                    child: Text(mensaje, style: const TextStyle(fontSize: 15.0))),
+                content: const SingleChildScrollView(child: Center(child: kTCpi)),
+              ));
+        });
+  }
+
   //-- ADD 2.1
   static Future<void> myDialogNewVersion(
       {String titulo = 'NUEVA VERSION DISPONIBLE',
@@ -291,7 +311,7 @@ class MyDateUtils {
 
   static String? convertToDateFullDthm(DateTime? input) {
     try {
-      var formatter = DateFormat('E dd MMMM yyyy HH:mm', 'es');
+      var formatter = DateFormat("E dd MMMM yyyy (HH:mm 'hs')", 'es');
       return input == null ? '' : formatter.format(input);
     } catch (e) {
       return null;
